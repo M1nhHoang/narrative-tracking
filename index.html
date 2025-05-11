@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chainslab Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Thêm thư viện Marked.js để render markdown sang HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Thêm thư viện Highlight.js để tô màu code -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- Thêm thư viện DOMPurify để tránh XSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.1/purify.min.js"></script>
+    <!-- Thêm thư viện Chart.js  -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+            </div>
+
+            <div class="menu">
+                <p class="menu-label">Menu</p>
+                <ul class="menu-items">
+                    <li class="menu-item">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="fas fa-search"></i>
+                        <span>Project Research</span>
+                    </li>
+                    <li class="menu-item active">
+                        <i class="fas fa-fire"></i>
+                        <span>Narratives Tracking</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Insights</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="fas fa-robot"></i>
+                        <span>Ask AI</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="fas fa-user"></i>
+                        <span>Personal Tracking</span>
+                    </li>
+                </ul>
+
+                <p class="menu-label">Other</p>
+                <ul class="menu-items">
+                    <li class="menu-item">
+                        <i class="fas fa-book"></i>
+                        <span>Thesis</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="fas fa-file"></i>
+                        <span>Docs</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="fas fa-image"></i>
+                        <span>Media Assets</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="discord-link">
+                <i class="fab fa-discord"></i>
+            </div>
+
+            <div class="collapse-menu">
+                <span>Collapse Menu</span>
+                <i class="fas fa-chevron-left"></i>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search anything...">
+                </div>
+                <div class="header-buttons">
+                    <button class="get-plugin-btn">Get Plugin</button>
+                    <button class="login-btn">Login</button>
+                </div>
+            </div>
+
+            <!-- Project Header -->
+            <div class="project-header">
+                <div class="project-title">
+                    <div class="project-icon">
+                        <span class="icon-text">NEO</span>
+                    </div>
+                    <h1>NEO <span class="subtitle">Example Project</span></h1>
+                </div>
+
+                <div class="project-links">
+                    <div class="link-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Website</span>
+                    </div>
+                    <div class="link-item">
+                        <i class="fab fa-x-twitter"></i>
+                        <span>X (Twitter)</span>
+                    </div>
+                    <div class="link-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Docs</span>
+                    </div>
+                </div>
+
+                <div class="project-tags">
+                    <span>Tags:</span>
+                    <div class="tag">Infrastructure</div>
+                    <div class="tag">AI</div>
+                    <div class="tag">Gaming</div>
+                </div>
+
+                <button class="watchlist-btn">Add to Watchlist</button>
+            </div>
+
+            <!-- Project Stats -->
+            <div class="project-stats">
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-label">Price</div>
+                        <div class="stat-value">$0.123</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">24h Change</div>
+                        <div class="stat-value positive">+2.5%</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Market Cap</div>
+                        <div class="stat-value">$500M</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">FDV</div>
+                        <div class="stat-value">$800M</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Volume (24h)</div>
+                        <div class="stat-value">$50M</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Circ. / Max Supply</div>
+                        <div class="stat-value">60M / 100M</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">1yr Emission/Inflation</div>
+                        <div class="stat-value">5%</div>
+                    </div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-label">Mindshare Score</div>
+                        <div class="stat-value">75/100</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Rug Score</div>
+                        <div class="stat-value">Low</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Growth Potential</div>
+                        <div class="stat-value">Medium</div>
+                    </div>
+                    <div class="stat-item"></div>
+                    <div class="stat-item"></div>
+                    <div class="stat-item"></div>
+                    <div class="stat-item"></div>
+                </div>
+            </div>
+
+            <!-- Content from Markdown -->
+            <div id="markdown-content" class="markdown-content">
+                <!-- Nội dung Markdown sẽ được render ở đây -->
+                <div class="loading">Loading analysis...</div>
+            </div>
+        </div>
+
+        <!-- Twitter Feed Sidebar -->
+        <div class="twitter-sidebar">
+            <h3>Recent Project Tweets</h3>
+            <div class="tweets-container">
+                <!-- Tweet 1 -->
+                <div class="tweet">
+                    <div class="tweet-header">
+                        <span class="handle">@ProjectHandle</span>
+                        <span class="time">1h ago</span>
+                    </div>
+                    <div class="tweet-content">
+                        <p>Exciting news coming soon! Stay tuned for a major announcement next week regarding our
+                            roadmap. #Project #Crypto #Innovation</p>
+                    </div>
+                </div>
+
+                <!-- Tweet 2 -->
+                <div class="tweet">
+                    <div class="tweet-header">
+                        <span class="handle">@ProjectHandle</span>
+                        <span class="time">6h ago</span>
+                    </div>
+                    <div class="tweet-content">
+                        <p>Our latest blog post on [Topic] is now live! Check it out for in-depth insights. [Link]</p>
+                    </div>
+                </div>
+
+                <!-- Tweet 3 -->
+                <div class="tweet">
+                    <div class="tweet-header">
+                        <span class="handle">@ProjectHandle</span>
+                        <span class="time">12h ago</span>
+                    </div>
+                    <div class="tweet-content">
+                        <p>Thanks to our amazing community for the continued support! We're building something special
+                            together.</p>
+                    </div>
+                </div>
+
+                <!-- Tweet 4 -->
+                <div class="tweet">
+                    <div class="tweet-header">
+                        <span class="handle">@ProjectHandle</span>
+                        <span class="time">1h ago</span>
+                    </div>
+                    <div class="tweet-content">
+                        <p>Exciting news coming soon! Stay tuned for a major announcement next week regarding our
+                            roadmap. #Project #Crypto #Innovation</p>
+                    </div>
+                </div>
+
+                <!-- Tweet 5 -->
+                <div class="tweet">
+                    <div class="tweet-header">
+                        <span class="handle">@ProjectHandle</span>
+                        <span class="time">6h ago</span>
+                    </div>
+                    <div class="tweet-content">
+                        <p>Our latest blog post on [Topic] is now live! Check it out for in-depth insights. [Link]</p>
+                    </div>
+                </div>
+
+                <!-- Tweet 6 -->
+                <div class="tweet">
+                    <div class="tweet-header">
+                        <span class="handle">@ProjectHandle</span>
+                        <span class="time">12h ago</span>
+                    </div>
+                    <div class="tweet-content">
+                        <p>Thanks to our amazing community for the continued support! We're building something special
+                            together.</p>
+                    </div>
+                </div>
+
+                <!-- Tweet 7 -->
+                <div class="tweet">
+                    <div class="tweet-header">
+                        <span class="handle">@ProjectHandle</span>
+                        <span class="time">1h ago</span>
+                    </div>
+                    <div class="tweet-content">
+                        <p>Exciting news coming soon! Stay tuned for a major announcement next week regarding our
+                            roadmap. #Project #Crypto #Innovation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript để xử lý Markdown và render HTML -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Cấu hình cho Marked.js
+            marked.setOptions({
+                breaks: true, // Cho phép xuống dòng
+                gfm: true, // Sử dụng GitHub Flavored Markdown
+                headerIds: true, // Tạo id cho các header
+                highlight: function (code, language) {
+                    // Highlight.js cho code blocks
+                    if (language && hljs.getLanguage(language)) {
+                        return hljs.highlight(code, { language }).value;
+                    }
+                    return code;
+                }
+            });
+
+            // Hàm để phát hiện và xử lý HTML trong markdown
+            function processHTMLBlocks(htmlContent) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlContent;
+
+                const codeBlocks = tempDiv.querySelectorAll('pre code.language-html');
+
+                codeBlocks.forEach(function (codeBlock, index) {
+                    const rawHtml = codeBlock.textContent;
+                    const parentPre = codeBlock.parentNode;
+                    let processedHtml = rawHtml;
+
+                    const baseHref = window.location.origin +
+                        window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+                    const baseTag = `<base href="${baseHref}">`;
+
+                    if (processedHtml.includes('<head>')) {
+                        processedHtml = processedHtml.replace('<head>', '<head>' + baseTag);
+                    } else if (processedHtml.includes('<html>')) {
+                        processedHtml = processedHtml.replace('<html>', '<html><head>' + baseTag + '</head>');
+                    } else {
+                        processedHtml = '<head>' + baseTag + '</head>' + processedHtml;
+                    }
+
+                    const iframe = document.createElement('iframe');
+                    iframe.className = 'html-render-iframe';
+                    iframe.frameBorder = '0';
+                    iframe.style.width = '100%';
+                    iframe.style.border = '1px solid rgb(68, 68, 68)';
+                    // iframe.sandbox = 'allow-scripts allow-same-origin';
+                    const iframeId = 'html-iframe-' + index;
+                    iframe.id = iframeId;
+
+                    // Set srcdoc first
+                    iframe.srcdoc = processedHtml;
+
+                    parentPre.parentNode.insertBefore(iframe, parentPre.nextSibling);
+
+                    setTimeout(() => {
+                        console.log('Iframe checked after timeout:', iframeId);
+                        iResize(iframeId);
+                    }, 1000);
+
+                    function iResize(iframeId) {
+                        const iframe = document.getElementById(iframeId);
+                        if (iframe && iframe.contentWindow && iframe.contentWindow.document.body) {
+                            const height = iframe.contentWindow.document.body.offsetHeight || iframe.contentWindow.document.body.scrollHeight;
+                            iframe.style.height = height + 20 + 'px';
+                            console.log('Iframe resized:', iframeId, 'Height:', height);
+                        } else {
+                            console.warn('Cannot resize iframe:', iframeId, 'Body not available');
+                        }
+                    }
+
+                    codeBlock.parentElement.remove();
+                    iResize(iframeId);
+                });
+                return tempDiv.innerHTML;
+            }
+
+            // Hàm tải và hiển thị markdown
+            async function loadMarkdownContent() {
+                const response = await fetch('http://localhost:8000/api/projects/neo/markdown');
+                if (!response.ok) {
+                    throw new Error('Không thể tải nội dung markdown');
+                }
+
+                const data = await response.json();
+                const markdownContent = data.content;
+
+                // Chuyển đổi markdown thành HTML
+                let htmlContent = marked.parse(markdownContent);
+
+                // Xử lý các HTML blocks
+                htmlContent = processHTMLBlocks(htmlContent);
+
+                // Hiển thị nội dung
+                document.getElementById('markdown-content').innerHTML = htmlContent;
+
+                // Tạo collapsible sections
+                initCollapsibleSections();
+
+                // Đăng ký các sự kiện cho dropdown
+                setupEventListeners();
+            }
+
+            // Hàm tạo collapsible sections
+            function initCollapsibleSections() {
+                const headings = document.querySelectorAll('#markdown-content h1, #markdown-content h2');
+
+                headings.forEach(heading => {
+                    if (heading.textContent.includes('Chainslab Expert Takeaway') ||
+                        heading.textContent.includes('Click to Expand') ||
+                        heading.textContent.includes('Expand Full')) {
+
+                        // Tạo toggle button
+                        const toggleBtn = document.createElement('span');
+                        toggleBtn.className = 'toggle-btn';
+                        toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+
+                        // Thêm button vào heading
+                        heading.prepend(toggleBtn);
+
+                        // Tìm nội dung cần collapse
+                        let content = document.createElement('div');
+                        let nextSibling = heading.nextElementSibling;
+
+                        while (nextSibling &&
+                            (!nextSibling.tagName || nextSibling.tagName.charAt(0) !== 'H' ||
+                                parseInt(nextSibling.tagName.charAt(1)) > parseInt(heading.tagName.charAt(1)))) {
+                            content.appendChild(nextSibling.cloneNode(true));
+                            const toRemove = nextSibling;
+                            nextSibling = nextSibling.nextElementSibling;
+                            toRemove.remove();
+                        }
+
+                        // Tạo container cho nội dung
+                        const contentContainer = document.createElement('div');
+                        contentContainer.className = 'collapsible-content collapsed';
+                        contentContainer.innerHTML = content.innerHTML;
+
+                        // Thêm vào sau heading
+                        heading.parentNode.insertBefore(contentContainer, heading.nextSibling);
+
+                        // Thêm sự kiện click
+                        heading.addEventListener('click', function () {
+                            contentContainer.classList.toggle('collapsed');
+                            toggleBtn.querySelector('i').classList.toggle('fa-chevron-down');
+                            toggleBtn.querySelector('i').classList.toggle('fa-chevron-up');
+                        });
+                    }
+                });
+            }
+
+            // Hàm thiết lập các event listeners
+            function setupEventListeners() {
+                // Xử lý các timeframe buttons cho AI Chart Analysis
+                const timeframeButtons = document.querySelectorAll('.timeframe-btn');
+                if (timeframeButtons.length > 0) {
+                    timeframeButtons.forEach(button => {
+                        button.addEventListener('click', function () {
+                            timeframeButtons.forEach(btn => btn.classList.remove('active'));
+                            this.classList.add('active');
+                        });
+                    });
+                }
+            }
+
+            // Bắt đầu tải nội dung markdown
+            loadMarkdownContent();
+        });
+    </script>
+</body>
+
+</html>
